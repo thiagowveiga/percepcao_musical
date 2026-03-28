@@ -19,7 +19,14 @@ notes_order = ['D2', 'Dx2', 'E2', 'F2', 'Fx2', 'G2', 'Gx2', 'A2', 'Ax2', 'B2', '
                'C4', 'Cx4', 'D4', 'Dx4', 'E4', 'F4', 'Fx4', 'G4', 'Gx4', 'A4', 'Ax4', 'B4', 'C5', 'Cx5', 'D5', 'Dx5', 'E5', 'F5', 'Fx5', 'G5', 'Gx5', 'A5', 'Ax5', 'B5', 'C6', 'Cx6']
 
 def format_note(note_str: str) -> str:
-    return note_str.replace('x', '#')[:-1] + ' ' + note_str[-1]
+
+    subscripts = {'0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄', 
+                  '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉'}
+    
+    octave = note_str[-1]
+    small_octave = subscripts.get(octave, octave)
+
+    return note_str.replace('x', '#')[:-1] + small_octave
 
 def rev_format_note(user_str: str) -> str:
     user_str = user_str.replace(' ', '')
